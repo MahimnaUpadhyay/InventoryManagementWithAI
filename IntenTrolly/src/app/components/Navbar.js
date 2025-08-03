@@ -1,13 +1,21 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+
+// NEXT NAVIGATION
 import { useRouter } from 'next/navigation';
+import InventoryPage from '../pages/Inventory/Page.js';
+import SalesPage from '../pages/Sales/Page.js';
+import WarehousePage from '../pages/Warehouse/Page.js';
+import SuppliersPage from '../pages/Suppliers/Page.js';
+
+// React ICONS
 import { MdOutlineInventory2 } from "react-icons/md";
 
 const Navbar = () => {
   const router = useRouter();
 
-  const [UserData, setUserData] = useState([])
+  const [UserData, setUserData] = React.useState([])
 
   const onLogout = () => {
     //TODO 
@@ -21,7 +29,7 @@ const Navbar = () => {
     router.push('/Home')
   }
 
-  useEffect(() => {
+  React.useEffect(() => {
     return () => {
       const storedUser = JSON.parse(sessionStorage?.getItem('user'));
       setUserData(storedUser)

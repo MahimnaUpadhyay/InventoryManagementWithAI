@@ -4,26 +4,20 @@ import React from 'react'
 import Card from '@/app/components/Card'
 
 // React Icons
-import { CiLocationOn, CiGlobe } from 'react-icons/ci'; 
-import { FaInstagram } from 'react-icons/fa';
+import { BsGraphUpArrow } from 'react-icons/bs'; 
 
 const SalesOverview = () => {
     return (
-        <div className="flex flex-row justify-between items-center gap-5 bg-gray-100 p-5 rounded-md w-full h-full">
+        <div className="flex flex-row justify-around items-center gap-5 bg-gray-100 p-5 rounded-md w-full h-full">
             <Card
-                Card_Title={"Offline Store"}
-                Icon={<CiLocationOn size={60} />}
-                Card_Content={"Something"}
+                Card_Title={"Monthly Sales"}
+                Icon={<BsGraphUpArrow size={60} color='blue'/>}
+                Card_Content={"$100k"}
             />
             <Card
-                Card_Title={"Online Store"}
-                Icon={<CiGlobe size={60} />}
-                Card_Content={"Something"}
-            />
-            <Card
-                Card_Title={"Overall Store"}
-                Icon={<FaInstagram size={60} />}
-                Card_Content={"Something"}
+                Card_Title={"Quaterly Sales"}
+                Icon={<BsGraphUpArrow size={60} color='blue'/>}
+                Card_Content={"$500k"}
             />
         </div>
     )

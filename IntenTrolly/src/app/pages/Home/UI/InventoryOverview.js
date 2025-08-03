@@ -4,7 +4,7 @@ import React from 'react'
 import Card from '@/app/components/Card';
 
 // React Icons
-import { CiLocationOn, CiGlobe } from 'react-icons/ci'; 
+import { MdInventory2 } from 'react-icons/md'; 
 
 const InventoryOverview = () => {
     return (
@@ -12,13 +12,13 @@ const InventoryOverview = () => {
             <div className="flex flex-row justify-around items-center bg-gray-100 p-5 rounded-md w-full h-full">
                 <Card
                     Card_Title={"Total Inventory"}
-                    Icon={<CiGlobe size={60} />}
-                    Card_Content={"Something"}
+                    Icon={<MdInventory2 size={60} color='blue'/>}
+                    Card_Content={"10k products"}
                 />
                 <Card
                     Card_Title={"Total Category"}
-                    Icon={<CiLocationOn size={60} />}
-                    Card_Content={"Something"}
+                    Icon={<MdInventory2 size={60} color='blue'/>}
+                    Card_Content={"100 unique category"}
                 />
             </div>
         </>
