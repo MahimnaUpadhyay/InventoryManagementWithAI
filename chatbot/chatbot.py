@@ -38,7 +38,7 @@ def rule_based_response(df, question):
         rows = df[df["Status"].str.lower() == "discontinued"]
     elif "cheapest" in q:
         rows = df[df["Parsed_Price"] == df["Parsed_Price"].min()]
-    elif "most expensive" in q:
+    elif "expensive" in q:
         rows = df[df["Parsed_Price"] == df["Parsed_Price"].max()]
     elif "out of stock" in q:
         rows = df[df["Stock_Quantity"] == 0]

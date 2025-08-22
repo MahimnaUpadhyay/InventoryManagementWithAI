@@ -3,7 +3,7 @@ import React from 'react';
 // Components Import
 import SalesOverview from './UI/SalesOverview';
 import InventoryOverview from './UI/InventoryOverview';
-import WarehouseOverview from './UI/WarehouseOverview';
+import SupplierOverview from './UI/SupplierOverview';
 import Chatbot from './UI/Chatbot';
 import Todo from './UI/Todo';
 
@@ -23,7 +23,7 @@ const HomePage = () => {
         {/* Section 2 */}
         <div className="grid grid-cols-2 w-full h-auto place-items-center p-6 gap-5">
           {/* Warehouse Overview */}
-          <WarehouseOverview />
+          <SupplierOverview />
 
           {/* Todo + Chatbot */}
           <div className="flex flex-col w-full h-auto justify-between items-center gap-5">

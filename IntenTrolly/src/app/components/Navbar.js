@@ -6,7 +6,6 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import InventoryPage from '../pages/Inventory/Page.js';
 import SalesPage from '../pages/Sales/Page.js';
-import WarehousePage from '../pages/Warehouse/Page.js';
 import SuppliersPage from '../pages/Suppliers/Page.js';
 
 // React ICONS

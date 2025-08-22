@@ -8,7 +8,7 @@ import { ML_BASE_URL } from '@/app/utility/Base_URL'
 import { askQuestion } from '@/app/utility/Chatbot_End_Point'
 
 const Chatbot = () => {
-  const [chatbot, setChatbot] = React.useState("")
+  const [chatbot, setChatbot] = React.useState({question: ''})
 
   const askChatbot = async (e) => {
     e.preventDefault()
@@ -20,14 +20,18 @@ const Chatbot = () => {
     }
   }
 
+  const onQuestionChange = (e) => {
+    setChatbot({...chatbot, question: e.target.value})
+  }
+
   return (
     <div className="flex w-full h-auto bg-gray-100 justify-center items-center rounded-md p-5">
       <div className="flex flex-row w-full h-[100px] justify-around items-center bg-white rounded-lg shadow-lg gap-5 p-5">
         <input 
           placeholder="Hey there!!"
           type='text'
-          value={chatbot}
-          onChange={(e) => setChatbot(e.target.value)}
+          value={chatbot?.question}
+          onChange={onQuestionChange}
           className="w-full border-2 p-2 rounded-xl"
         />
         <button 
