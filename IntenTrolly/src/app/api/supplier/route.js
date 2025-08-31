@@ -4,17 +4,17 @@ import {SupplierSchema} from "@/MODELS/Relationship.js";
 export async function GET() {
   try {
     await DB_Connect();
-    const request = await SupplierSchema.findAll();
+    const response = await SupplierSchema.findAll();
 
-    if (request.length === 0) {
+    if (response.length === 0) {
       return Response.json(
-        { message: "Supplier Model is empty", request },
+        { message: "Supplier Model is empty", response },
         { status: 404 }
       );
     }
 
     return Response.json(
-      { message: "Supplier Model Data", request },
+      { message: "Supplier Model Data", response },
       { status: 200 }
     );
   } catch (error) {

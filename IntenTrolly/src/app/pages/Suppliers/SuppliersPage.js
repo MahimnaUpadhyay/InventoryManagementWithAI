@@ -1,8 +1,13 @@
+import Navbar from '@/app/components/Navbar'
 import React from 'react'
+import SupplierTable from './UI/SupplierTable'
 
 const SuppliersPage = () => {
   return (
-    <div>SuppliersPage</div>
+    <>
+      <Navbar />
+      <SupplierTable />
+    </>
   )
 }
 

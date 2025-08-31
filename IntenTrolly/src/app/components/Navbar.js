@@ -4,9 +4,6 @@ import React from 'react';
 
 // NEXT NAVIGATION
 import { useRouter } from 'next/navigation';
-import InventoryPage from '../pages/Inventory/Page.js';
-import SalesPage from '../pages/Sales/Page.js';
-import SuppliersPage from '../pages/Suppliers/Page.js';
 
 // React ICONS
 import { MdOutlineInventory2 } from "react-icons/md";
@@ -25,7 +22,19 @@ const Navbar = () => {
   }
 
   const onLogo = () => {
-    router.push('/Home')
+    router.push('/pages/Home')
+  }
+
+  const onInventory = () => {
+    router.push('/pages/Inventory')
+  }
+
+  const onSuppliers = () => {
+    router.push('/pages/Suppliers')
+  }
+
+  const onSales=()=>{
+    router.push('/pages/Sales')
   }
 
   React.useEffect(() => {
@@ -47,11 +56,11 @@ const Navbar = () => {
         </a>
 
         <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-          <a className="mr-5 hover:text-gray-900 cursor-pointer">Dashboard</a>
-          <a className="mr-5 hover:text-gray-900 cursor-pointer">Inventory</a>
-          <a className="mr-5 hover:text-gray-900 cursor-pointer">Suppliers</a>
-          <a className="mr-5 hover:text-gray-900 cursor-pointer">Wearhouse</a>
-          <a className="mr-5 hover:text-gray-900 cursor-pointer">Sales</a>
+          <a className="mr-5 hover:text-gray-900 cursor-pointer" onClick={onLogo}>Dashboard</a>
+          <a className="mr-5 hover:text-gray-900 cursor-pointer" onClick={onInventory}>Inventory</a>
+          <a className="mr-5 hover:text-gray-900 cursor-pointer" onClick={onSuppliers}>Suppliers</a>
+          {/* <a className="mr-5 hover:text-gray-900 cursor-pointer">Wearhouse</a> */}
+          <a className="mr-5 hover:text-gray-900 cursor-pointer" onClick={onSales}>Sales</a>
         </nav>
 
         <div className="flex flex-row justify-between items-center gap-2">
