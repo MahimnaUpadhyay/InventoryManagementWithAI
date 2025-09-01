@@ -3,8 +3,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { FaPlus, FaTimes } from 'react-icons/fa';
-import { BASE_URL } from '@/app/utility/Base_URL';
-import { putSalesEndPoint, getSalesEndPoint } from '@/app/utility/Sales_End_Point';
+import { BASE_URL } from '@/app/utility/API_END_POINT/Base_URL';
+import { putSalesEndPoint, getSalesEndPoint } from '@/app/utility/API_END_POINT/Sales_End_Point';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

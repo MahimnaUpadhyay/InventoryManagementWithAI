@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react'
 
 // FOR API CALL
 import axios from 'axios';
-import { BASE_URL } from '@/app/utility/Base_URL.js';
-import { getProductEndPoint } from '@/app/utility/Product_End_Point.js';
+import { BASE_URL } from '@/app/utility/API_END_POINT/Base_URL.js';
+import { getProductEndPoint } from '@/app/utility/API_END_POINT/Product_End_Point.js';
 
 // ICONS
 import { FaFilter, FaPlus, FaSearch } from 'react-icons/fa'

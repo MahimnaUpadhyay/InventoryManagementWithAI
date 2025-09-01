@@ -4,8 +4,8 @@ import React, { useEffect, useState } from 'react';
 
 // API
 import axios from 'axios';
-import { BASE_URL } from '@/app/utility/Base_URL';
-import { postSupplierEndPoint } from '@/app/utility/Supplier_End_Point';
+import { BASE_URL } from '@/app/utility/API_END_POINT/Base_URL';
+import { postSupplierEndPoint } from '@/app/utility/API_END_POINT/Supplier_End_Point';
 
 // ICONS
 import { FaPlus, FaTimes } from 'react-icons/fa';

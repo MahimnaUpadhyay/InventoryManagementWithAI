@@ -4,8 +4,8 @@ import React from 'react'
 
 // For API
 import axios from 'axios'
-import { ML_BASE_URL } from '@/app/utility/Base_URL'
-import { askQuestion } from '@/app/utility/Chatbot_End_Point'
+import { ML_BASE_URL } from '@/app/utility/API_END_POINT/Base_URL'
+import { askQuestion } from '@/app/utility/API_END_POINT/Chatbot_End_Point'
 
 const Chatbot = () => {
   const [chatbot, setChatbot] = React.useState({question: ''})
