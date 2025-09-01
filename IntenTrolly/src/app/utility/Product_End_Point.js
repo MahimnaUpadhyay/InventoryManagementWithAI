@@ -1,6 +1,6 @@
-const getProductEndPoint = '/api/products'
-const postProductEndPoint = '/api/products'
-const putProductEndPoint = '/api/products'
-const deleteProductEndPoint = '/api/products'
+const getProductEndPoint = '/api/product'
+const postProductEndPoint = '/api/product'
+const putProductEndPoint = '/api/product'
+const deleteProductEndPoint = '/api/product'
 
 export {getProductEndPoint, postProductEndPoint, putProductEndPoint, deleteProductEndPoint}

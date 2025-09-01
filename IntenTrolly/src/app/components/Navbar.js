@@ -22,7 +22,7 @@ const Navbar = () => {
   }
 
   const onLogo = () => {
-    router.push('/pages/Home')
+    router.push('/')
   }
 
   const onInventory = () => {

@@ -4,7 +4,7 @@ import {ProductSchema, SupplierSchema} from "@/MODELS/Relationship.js";
 export async function GET() {
   try {
     await DB_Connect();
-    const request = await ProductSchema.findAll({
+    const response = await ProductSchema.findAll({
       include: [
         {
           model: SupplierSchema,
@@ -14,15 +14,15 @@ export async function GET() {
       ],
     });
 
-    if (request.length === 0) {
+    if (response.length === 0) {
       return Response.json(
-        { message: "Product Model is empty", request },
+        { message: "Product Model is empty", response },
         { status: 404 }
       );
     }
 
     return Response.json(
-      { message: "Product Model Data", request },
+      { message: "Product Model Data", response },
       { status: 200 }
     );
   } catch (error) {

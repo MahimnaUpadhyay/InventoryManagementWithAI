@@ -1,8 +1,13 @@
 import React from 'react'
+import SalesTable from './UI/SalesTable'
+import Navbar from '@/app/components/Navbar'
 
 const SalesPage = () => {
   return (
-    <div>SalesPage</div>
+    <>
+      <Navbar />
+      <SalesTable />
+    </>
   )
 }
 
