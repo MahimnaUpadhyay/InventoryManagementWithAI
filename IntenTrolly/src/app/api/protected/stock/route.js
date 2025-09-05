@@ -1,6 +1,7 @@
 import {DB_Connect} from "@/DATABASE/DB_CONNECTION.js";
 import {ProductSchema, StockSchema} from "@/MODELS/Relationship.js";
 
+// View Stock
 export async function GET() {
   try {
     await DB_Connect();
@@ -15,22 +16,17 @@ export async function GET() {
     });
 
     if (request.length === 0) {
-      return Response.json(
-        { message: "Stock Model is empty", request },
-        { status: 404 }
-      );
+      return Response.json({ message: "Stock Model is empty", request },{ status: 404 });
+    } else {
+      return Response.json({ message: "Stock Model Data", request },{ status: 200 });
     }
-
-    return Response.json(
-      { message: "Stock Model Data", request },
-      { status: 200 }
-    );
   } catch (error) {
     console.log("Error in Stock GET method:", error);
     return Response.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
 
+// Add Stock
 export async function POST(req) {
   try {
     await DB_Connect();
