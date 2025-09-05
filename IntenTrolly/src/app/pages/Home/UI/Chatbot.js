@@ -1,27 +1,27 @@
 "use client"
 
-import React from 'react'
+import React from 'react';
 
 // For API
-import axios from 'axios'
-import { ML_BASE_URL } from '@/app/utility/API_END_POINT/Base_URL'
-import { askQuestion } from '@/app/utility/API_END_POINT/Chatbot_End_Point'
+import axios from 'axios';
+import { ML_BASE_URL } from '@/app/utility/API_END_POINT/Base_URL';
+import { askQuestion } from '@/app/utility/API_END_POINT/Chatbot_End_Point';
 
 const Chatbot = () => {
-  const [chatbot, setChatbot] = React.useState({question: ''})
+  const [chatbot, setChatbot] = React.useState({question: ''});
 
   const askChatbot = async (e) => {
     e.preventDefault()
     try {
-      const response = await axios.post(`${ML_BASE_URL}${askQuestion}`, chatbot)
+      const response = await axios.post(`${ML_BASE_URL}${askQuestion}`, chatbot);
       console.log(response.data)
     } catch (error) {
-      console.error(error.response?.data || error.message)
+      console.error(error.response?.data || error.message);
     }
   }
 
   const onQuestionChange = (e) => {
-    setChatbot({...chatbot, question: e.target.value})
+    setChatbot({...chatbot, question: e.target.value});
   }
 
   return (

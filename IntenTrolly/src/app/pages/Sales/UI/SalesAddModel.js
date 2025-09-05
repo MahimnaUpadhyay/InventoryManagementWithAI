@@ -1,17 +1,23 @@
 "use client"
 
+// React import
+import React from 'react';
+
+// API imports
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { FaPlus, FaTimes } from 'react-icons/fa';
 import { BASE_URL } from '@/app/utility/API_END_POINT/Base_URL';
 import { postSalesEndPoint } from '@/app/utility/API_END_POINT/Sales_End_Point';
 
+// Toast Import
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// React Icons
+import { FaPlus, FaTimes } from 'react-icons/fa';
+
 const SalesAddModal = ({ closeModal }) => {
 
-    const [addProductData, setaddProductData] = useState({
+    const [addProductData, setaddProductData] = React.useState({
         Productname: "",
         Category: "",
         Brand: "",
@@ -24,14 +30,15 @@ const SalesAddModal = ({ closeModal }) => {
         try {
             const request = await axios.post(`${BASE_URL}${postSalesEndPoint}`, addProductData);
 
-            const notify = () => toast("Product Added");
-
-            notify()
-
-            return request
+            if (!request) {
+                toast.error("Failed to add sale");
+            } else {
+                toast.success("Sale added Successfully");
+            }
 
         } catch (error) {
             console.log(error);
+            toast.error("Failed to add sale");
         }
     }
 

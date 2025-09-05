@@ -1,7 +1,7 @@
 "use client"
 
 // REACT IMPORTS
-import { useState, useEffect } from 'react'
+import React from 'react'
 
 // FOR API CALL
 import axios from 'axios';
@@ -9,8 +9,7 @@ import { BASE_URL } from '@/app/utility/API_END_POINT/Base_URL.js';
 import {getSupplierEndPoint, posSuppliertEndPoint } from '@/app/utility/API_END_POINT/Supplier_End_Point.js';
 
 // ICONS
-import { FaFilter, FaPlus, FaSearch } from 'react-icons/fa'
-import { IoIosArrowDown } from "react-icons/io";
+import { FaPlus, FaSearch } from 'react-icons/fa';
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { FiEdit2 } from "react-icons/fi";
 
@@ -19,11 +18,11 @@ import SupplierAddModal from './SupplierAddModel';
 
 const SupplierTable = () => {
 
-    const [Supplier_Data, setSupplier_Data] = useState([])
-    const [TotalSupplier, setTotalSupplier] = useState([])
-    const [Loading, setLoading] = useState(false)
-    const [isAddModalOpen, setisAddModalOpen] = useState(false)
-    const [isUpdateModalOpen, setisUpdateModalOpen] = useState(false)
+    const [Supplier_Data, setSupplier_Data] = React.useState([]);
+    const [TotalSupplier, setTotalSupplier] = React.useState([]);
+    const [Loading, setLoading] = React.useState(false);
+    const [isAddModalOpen, setisAddModalOpen] = React.useState(false);
+    const [isUpdateModalOpen, setisUpdateModalOpen] = React.useState(false);
 
     // GET suppliers
     const getSupplier = async () => {
@@ -32,7 +31,7 @@ const SupplierTable = () => {
 
             const request = await axios.get(`${BASE_URL}${getSupplierEndPoint}`);
             const SupplierData = request.data.response;
-            console.log(SupplierData)
+            // console.log(SupplierData)
 
             if (!Array.isArray(SupplierData)) {
                 console.log("supplier Data is not in Array");
@@ -72,8 +71,8 @@ const SupplierTable = () => {
     // ALL METHODS FOR API
     useEffect(() => {
         return () => {
-            getSupplier()
-            Total_Supplier()
+            getSupplier();
+            Total_Supplier();
         }
     }, [])
 

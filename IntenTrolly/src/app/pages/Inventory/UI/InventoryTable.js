@@ -1,7 +1,7 @@
 "use client"
 
 // REACT IMPORTS
-import { useState, useEffect } from 'react'
+import React from 'react';
 
 // FOR API CALL
 import axios from 'axios';
@@ -9,7 +9,7 @@ import { BASE_URL } from '@/app/utility/API_END_POINT/Base_URL.js';
 import { getProductEndPoint } from '@/app/utility/API_END_POINT/Product_End_Point.js';
 
 // ICONS
-import { FaFilter, FaPlus, FaSearch } from 'react-icons/fa'
+import { FaFilter, FaPlus, FaSearch } from 'react-icons/fa';
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { FiEdit2 } from "react-icons/fi";
 
@@ -19,11 +19,11 @@ import InventoryUpdateModal from './InventoryUpdateModel';
 
 const InventoryTable = () => {
 
-    const [Product_Data, setProduct_Data] = useState([])
-    const [TotalProduct, setTotalProduct] = useState([])
-    const [Loading, setLoading] = useState(false)
-    const [isAddModalOpen, setisAddModalOpen] = useState(false)
-    const [isUpdateModalOpen, setisUpdateModalOpen] = useState(false)
+    const [Product_Data, setProduct_Data] = React.useState([]);
+    const [TotalProduct, setTotalProduct] = React.useState([]);
+    const [Loading, setLoading] = React.useState(false);
+    const [isAddModalOpen, setisAddModalOpen] = React.useState(false);
+    const [isUpdateModalOpen, setisUpdateModalOpen] = React.useState(false);
 
     // GET PRODUCTS
     const getProduct = async () => {
@@ -42,11 +42,11 @@ const InventoryTable = () => {
                     console.log("Not an array");
                 } else {
                     setProduct_Data(product_array);
-                    setLoading(false)
+                    setLoading(false);
                 }
             } else {
                 setProduct_Data(ProductData);
-                setLoading(false)
+                setLoading(false);
             }
         } catch (error) {
             console.log("There is an error while getting Products", error);
@@ -57,7 +57,7 @@ const InventoryTable = () => {
     const totalProduct = async () => {
         try {
             const request = await axios.get(`${BASE_URL}${getProductEndPoint}`);
-            const ProductData = request.data.response
+            const ProductData = request.data.response;
 
             const TotalCount = ProductData.length;
 
@@ -70,8 +70,8 @@ const InventoryTable = () => {
     // ALL METHODS FOR API
     useEffect(() => {
         return () => {
-            getProduct()
-            totalProduct()
+            getProduct();
+            totalProduct();
         }
     }, [])
 

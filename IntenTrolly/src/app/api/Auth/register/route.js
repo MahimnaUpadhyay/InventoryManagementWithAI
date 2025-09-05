@@ -8,7 +8,7 @@ export async function POST(req) {
 
     const user = await UserSchema.create(body);
 
-    return Response.json({ message: "User registered successfully" }, { status: 201 });
+    return Response.json({ message: "User registered successfully", user }, { status: 201 });
   } catch (error) {
     console.error("Register Error:", error);
     return Response.json({ error: "Internal Server Error" }, { status: 500 });

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 // API
 import axios from 'axios';
@@ -16,7 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const SupplierAddModal = ({ closeModal }) => {
 
-    const [addSupplierData, setaddSupplierData] = useState({
+    const [addSupplierData, setaddSupplierData] = React.useState({
         supplierName: "",
         supplierAddress: "",
         supplierPhone: "",
@@ -29,17 +29,11 @@ const SupplierAddModal = ({ closeModal }) => {
         try {
             const request = await axios.post(`${BASE_URL}${postSupplierEndPoint}`, addSupplierData);
 
-            if (request.length() == 0) {
-                const notify = () => {
-                    toast("Add Supplier Details")
-                }
-                notify()
+            if (!request) {
+                toast.error("Failed to add supplier");
             } else {
-                const notify = () => toast("Product Added");
-                notify()   
+                toast.success("Supplier Added successfully");
             }
-
-            return request
 
         } catch (error) {
             console.log(error);

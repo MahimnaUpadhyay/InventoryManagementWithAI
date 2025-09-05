@@ -1,7 +1,7 @@
 "use client"
 
 // REACT IMPORTS
-import { useState, useEffect } from 'react'
+import React from 'react';
 
 // FOR API CALL
 import axios from 'axios';
@@ -9,7 +9,7 @@ import { BASE_URL } from '@/app/utility/API_END_POINT/Base_URL.js';
 import { getSalesEndPoint } from '@/app/utility/API_END_POINT/Sales_End_Point.js';
 
 // ICONS
-import { FaFilter, FaPlus, FaSearch } from 'react-icons/fa'
+import { FaFilter, FaPlus, FaSearch } from 'react-icons/fa';
 import { IoIosArrowDown } from "react-icons/io";
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { FiEdit2 } from "react-icons/fi";
@@ -20,11 +20,11 @@ import SalesUpdateModal from './SalesUpdateModel';
 
 const SalesTable = () => {
 
-    const [Sales_Data, setSales_Data] = useState([]);
-    const [TotalSales, setTotalSales] = useState([]);
-    const [Loading, setLoading] = useState(false);
-    const [isAddModalOpen, setisAddModalOpen] = useState(false);
-    const [isUpdateModalOpen, setisUpdateModalOpen] = useState(false);
+    const [Sales_Data, setSales_Data] = React.useState([]);
+    const [TotalSales, setTotalSales] = React.useState([]);
+    const [Loading, setLoading] = React.useState(false);
+    const [isAddModalOpen, setisAddModalOpen] = React.useState(false);
+    const [isUpdateModalOpen, setisUpdateModalOpen] = React.useState(false);
 
     // GET Sales
     const getSales = async () => {
@@ -74,8 +74,8 @@ const SalesTable = () => {
     // ALL METHODS FOR API
     useEffect(() => {
         return () => {
-            getSales()
-            totalSales()
+            getSales();
+            totalSales();
         }
     }, [])
 

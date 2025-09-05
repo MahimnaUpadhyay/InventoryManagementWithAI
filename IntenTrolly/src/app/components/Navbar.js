@@ -59,7 +59,6 @@ const Navbar = () => {
           <a className="mr-5 hover:text-gray-900 cursor-pointer" onClick={onLogo}>Dashboard</a>
           <a className="mr-5 hover:text-gray-900 cursor-pointer" onClick={onInventory}>Inventory</a>
           <a className="mr-5 hover:text-gray-900 cursor-pointer" onClick={onSuppliers}>Suppliers</a>
-          {/* <a className="mr-5 hover:text-gray-900 cursor-pointer">Wearhouse</a> */}
           <a className="mr-5 hover:text-gray-900 cursor-pointer" onClick={onSales}>Sales</a>
         </nav>
 
@@ -73,7 +72,7 @@ const Navbar = () => {
           <button
             onClick={onProfile}
             className="flex flex-row justify-center items-center w-24 h-10 p-2 bg-blue-700 hover:bg-blue-800 text-white text-md rounded-full">
-            {/* {UserData?.ExistingUser?.Username} */}
+            {UserData?.ExistingUser?.Username}
             Profile
           </button>
         </div>

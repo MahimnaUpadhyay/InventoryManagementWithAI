@@ -1,5 +1,5 @@
-const loginEndPoint = "/api/auth/login"
-const signoutEndPoint = "/api/auth/signout"
+const loginEndPoint = "/api/Auth/login"
+const signinEndPoint = "/api/Auth/register"
 const logoutEndPoint = "/api/auth/logout"
 
-export {loginEndPoint, signoutEndPoint, logoutEndPoint}
+export {loginEndPoint, signinEndPoint, logoutEndPoint}
