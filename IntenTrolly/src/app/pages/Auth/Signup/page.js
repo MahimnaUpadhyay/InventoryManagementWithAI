@@ -1,18 +1,28 @@
 "use client";
 
-import React, { useState } from 'react';
+// React Import
+import React from 'react';
+
+// API Import
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { BASE_URL } from '@/app/utility/API_END_POINT/Base_URL';
 import { signinEndPoint } from '@/app/utility/API_END_POINT/Autho_End_Point';
+
+// Router for navigation
+import { useRouter } from 'next/navigation';
+
+// Toast Import
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+// React Icon Import
 import { MdOutlineInventory2 } from 'react-icons/md';
+import { FaArrowRight } from 'react-icons/fa';
 
 const page = () => {
     const router = useRouter();
 
-    const [User, setUser] = useState({
+    const [User, setUser] = React.useState({
         User_Name: '',
         User_Email: '',
         User_Password: ''
@@ -29,8 +39,6 @@ const page = () => {
                 toast.error("Please enter valid details");
             } else {
                 toast.success("Sign Up Successful!");
-
-                sessionStorage.setItem('user', JSON.stringify(UserData));
 
                 // Redirect to login page
                 router.push('/pages/Auth/Login');
@@ -79,8 +87,21 @@ const page = () => {
                             >
                                 Create Account
                             </button>
+                            <ToastContainer />
                         </form>
-                        <ToastContainer />
+
+                        <h1 className='flex w-full justify-center mt-5 font-bold'>Already have account</h1>
+
+                        <div className='flex w-full justify-center'>
+                            <button
+                                onClick={()=>router.push("/pages/Auth/Login")}
+                                className="flex justify-center gap-3 items-center w-[215px] bg-gray-200 hover:bg-gray-300
+                                 text-black text-lg rounded-lg mt-5 p-2">
+                                Login
+
+                                <FaArrowRight />
+                            </button>
+                        </div>
                     </div>
                 </div>
 

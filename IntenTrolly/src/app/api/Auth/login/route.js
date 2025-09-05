@@ -2,6 +2,7 @@ import UserSchema from "@/MODELS/User";
 import { DB_Connect } from "@/DATABASE/DB_CONNECTION";
 import { generateToken } from "@/app/utility/JWT";
 
+// Login 
 export async function POST(req) {
   try {
     await DB_Connect();
@@ -22,7 +23,7 @@ export async function POST(req) {
     const token = generateToken(user);
 
     return Response.json(
-      { message: "Login successful", token, user: { id: user.user_ID, email: user.User_Email, role: user.User_Role } },
+      { message: "Login successful", token, user: { id: user.user_ID, username: user.User_Name ,email: user.User_Email, role: user.User_Role } },
       { status: 200 }
     );
   } catch (error) {

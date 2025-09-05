@@ -32,14 +32,18 @@ const page = () => {
     e.preventDefault()
     try {
       const response = await axios.post(`${BASE_URL}${loginEndPoint}`, User);
-      const UserData = response?.data?.user;
+      const { user, token } = response?.data;
 
-      if (!UserData) {
+      if (!user || !token) {
         toast.error("Please enter valid details");
       } else {
         toast.success("Login In Successful!");
 
-        sessionStorage.setItem('user', JSON.stringify(UserData));
+        // Storing the token
+        localStorage.setItem('token', token);
+
+        // storing the user data
+        localStorage.setItem('user', JSON.stringify(user));
 
         // Redirect to login page
         router.push('/pages/Home');
@@ -61,6 +65,25 @@ const page = () => {
   return (
     <>
       <div className='grid grid-cols-2 w-full h-screen place-items-center'>
+
+        <div className='bg-blue-500 h-full w-full flex flex-col justify-center items-center text-white'>
+          <div className='mb-3'>
+            <MdOutlineInventory2 size={60} color="white" />
+          </div>
+          <h1 className='text-3xl'>Explore the World's Best <span className='font-bold'>Inventrolly</span></h1>
+          <p className='w-[510px] h-auto mt-3 text-lg justify-start'>
+            Manage your business with one of the best platform in industry, Introducing
+            <span className='font-bold ml-1 mr-1'>
+              Inventrolly.
+            </span>
+            One of the top leading industry product, which will make your business
+            <span className='font-bold ml-1 mr-1'>
+              "trolly"
+            </span>
+            better.
+          </p>
+        </div>
+
         <div className='flex flex-col'>
           <h1 className='text-black text-2xl font-bold'>Welcome Back!</h1>
           <hr className='border-gray-800 rounded-full mt-2' />
@@ -92,46 +115,7 @@ const page = () => {
               </button>
               <ToastContainer />
             </form>
-
-            <h1 className='flex w-full justify-center mt-5 font-bold'>Or</h1>
-
-            <div className='grid grid-cols-2 w-full place-items-center gap-2'>
-              <button
-                className="flex justify-center gap-3 items-center w-[215px] bg-gray-200 hover:bg-gray-300
-                 text-black text-lg rounded-lg mt-5 p-2">
-                Sign in with
-                <FaGoogle
-                  size={25}
-                />
-              </button>
-              <button
-                className="flex justify-center gap-3 items-center w-[215px] bg-gray-200 hover:bg-gray-300 
-                text-black text-lg rounded-lg mt-5 p-2">
-                Sign in with
-                <FaGithub
-                  size={25}
-                />
-              </button>
-            </div>
           </div>
-        </div>
-
-        <div className='bg-blue-500 h-full w-full flex flex-col justify-center items-center text-white'>
-          <div className='mb-3'>
-            <MdOutlineInventory2 size={60} color="white" />
-          </div>
-          <h1 className='text-3xl'>Explore the World's Best <span className='font-bold'>Inventrolly</span></h1>
-          <p className='w-[510px] h-auto mt-3 text-lg justify-start'>
-            Manage your business with one of the best platform in industry, Introducing
-            <span className='font-bold ml-1 mr-1'>
-              Inventrolly.
-            </span>
-            One of the top leading industry product, which will make your business
-            <span className='font-bold ml-1 mr-1'>
-              "trolly"
-            </span>
-            better.
-          </p>
         </div>
       </div>
     </>
