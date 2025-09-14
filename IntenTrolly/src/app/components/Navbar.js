@@ -19,7 +19,7 @@ const Sidebar = ({ children }) => {
   };
 
   const onLogo = () => {
-    router.push('/');
+    router.push('/pages/Home');
   };
 
   const onInventory = () => {
@@ -35,8 +35,9 @@ const Sidebar = ({ children }) => {
   };
 
   React.useEffect(() => {
-    const storedUser = JSON.parse(sessionStorage?.getItem('user'));
-    setUserData(storedUser);
+    const storedUser = localStorage.getItem("user");
+    const parseData = JSON.parse(storedUser);
+    setUserData(parseData?.username);
   }, []);
 
   return (
@@ -97,7 +98,7 @@ const Sidebar = ({ children }) => {
               className="flex items-center gap-2 px-4 py-2 bg-white text-black rounded hover:bg-blue-300 hover:text-white w-full"
             >
               <HiOutlineUser size={20} />
-              {UserData?.ExistingUser?.Username || 'Profile'}
+              {UserData || 'Profile'}
             </button>
 
             <button

@@ -4,7 +4,7 @@ import { ProductSchema, SupplierSchema } from "@/MODELS/Relationship.js";
 import { authorizeRole } from "@/app/utility/RoleAuth";
 
 // View products
-export async function GET(req) {
+export async function GET() {
   try {
     await DB_Connect();
     const response = await ProductSchema.findAll({
@@ -18,7 +18,7 @@ export async function GET(req) {
     });
 
     if (response.length === 0) {
-      return Response.json({ message: "Product Model is empty", response }, { status: 404 });
+      return Response.json({ message: "Product Model is empty", response }, { status: 200 });
     } else {
       return Response.json({ message: "Product Model Data", response }, { status: 200 });
     }
@@ -34,7 +34,10 @@ export async function POST(req) {
     await DB_Connect();
 
     const token = req.headers.get("authorization")?.split(" ")[1];
+    // console.log("Token", token);
+
     const user = verifyToken(token);
+    // console.log("User", user);
 
     const body = await req.json();
 

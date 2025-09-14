@@ -22,7 +22,8 @@ const InventoryAddModal = ({ closeModal }) => {
     const addProduct = async (e) => {
         e.preventDefault();
         try {
-            const request = await axios.post(`${BASE_URL}${postProductEndPoint}`, addProductData);
+            const token = localStorage.getItem('token');
+            const request = await axios.post(`${BASE_URL}${postProductEndPoint}`, addProductData, {headers: {Authorization: `Bearer ${token}`}});
 
             if(!request){
                 toast.error("Failed to add Product");
