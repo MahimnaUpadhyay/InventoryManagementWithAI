@@ -11,7 +11,9 @@ const Sidebar = ({ children }) => {
   const [UserData, setUserData] = React.useState([]);
 
   const onLogout = () => {
-    // TODO: Implement logout logic
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    router.push('/pages/Auth/Login');
   };
 
   const onProfile = () => {
