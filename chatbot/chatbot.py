@@ -32,7 +32,11 @@ def rule_based_response(df, question):
     q = question.lower()
     if "low in stock" in q:
         rows = df[df["Stock_Quantity"] < df["Reorder_Level"]]
+    elif "konse products kem hai stock mai" in q:
+        rows = df[df["Stock_Quantity"] < df["Reorder_Level"]]
     elif "highest sales" in q:
+        rows = df[df["Sales_Volume"] == df["Sales_Volume"].max()]
+    elif "konse product ka sabse zyada sales hui hai?" in q:
         rows = df[df["Sales_Volume"] == df["Sales_Volume"].max()]
     elif "discontinued" in q:
         rows = df[df["Status"].str.lower() == "discontinued"]
@@ -48,7 +52,7 @@ def rule_based_response(df, question):
 
 # Load models
 embedder = SentenceTransformer("all-MiniLM-L6-v2")
-qa_pipeline = pipeline("question-answering", model="deepset/roberta-base-squad2", tokenizer="deepset/roberta-base-squad2", device=0 if torch.cuda.is_available() else -1)
+qa_pipeline = pipeline("question-answering", model="timpal0l/mdeberta-v3-base-squad2", tokenizer="timpal0l/mdeberta-v3-base-squad2", device=0 if torch.cuda.is_available() else -1)
 
 # Embeding the answer
 def embed_and_answer(df, question):
