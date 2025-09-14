@@ -1,84 +1,122 @@
 "use client"
 
 import React from 'react';
-
-// NEXT NAVIGATION
 import { useRouter } from 'next/navigation';
-
-// React ICONS
 import { MdOutlineInventory2 } from "react-icons/md";
+import { HiOutlineLogout, HiOutlineUser } from "react-icons/hi";
 
-const Navbar = () => {
+const Sidebar = ({ children }) => {
   const router = useRouter();
 
-  const [UserData, setUserData] = React.useState([])
+  const [UserData, setUserData] = React.useState([]);
 
   const onLogout = () => {
-    //TODO 
+    // TODO: Implement logout logic
   };
 
   const onProfile = () => {
-    router.push('/profile')
-  }
+    router.push('/profile');
+  };
 
   const onLogo = () => {
-    router.push('/')
-  }
+    router.push('/');
+  };
 
   const onInventory = () => {
-    router.push('/pages/Inventory')
-  }
+    router.push('/pages/Inventory');
+  };
 
   const onSuppliers = () => {
-    router.push('/pages/Suppliers')
-  }
+    router.push('/pages/Suppliers');
+  };
 
-  const onSales=()=>{
-    router.push('/pages/Sales')
-  }
+  const onSales = () => {
+    router.push('/pages/Sales');
+  };
 
   React.useEffect(() => {
-    return () => {
-      const storedUser = JSON.parse(sessionStorage?.getItem('user'));
-      setUserData(storedUser)
-    }
-  }, [])
-
+    const storedUser = JSON.parse(sessionStorage?.getItem('user'));
+    setUserData(storedUser);
+  }, []);
 
   return (
-    <header className="text-gray-600 body-font">
-      <div className="w-full flex flex-wrap p-5 flex-col md:flex-row justify-between items-center shadow-sm">
-        <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-          <div onClick={onLogo}>
-            <MdOutlineInventory2 size={60} color="darkblue" />
-          </div>
-          <span className="ml-3 text-xl cursor-pointer">InvenTrolly</span>
-        </a>
-
-        <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-          <a className="mr-5 hover:text-gray-900 cursor-pointer" onClick={onLogo}>Dashboard</a>
-          <a className="mr-5 hover:text-gray-900 cursor-pointer" onClick={onInventory}>Inventory</a>
-          <a className="mr-5 hover:text-gray-900 cursor-pointer" onClick={onSuppliers}>Suppliers</a>
-          <a className="mr-5 hover:text-gray-900 cursor-pointer" onClick={onSales}>Sales</a>
-        </nav>
-
-        <div className="flex flex-row justify-between items-center gap-2">
-          <button
-            onClick={onLogout}
-            className="flex flex-row justify-center items-center w-24 h-10 p-2 bg-blue-700 hover:bg-blue-800 text-white text-md rounded-full"
+    <div className="flex min-h-screen">
+      {/* Sidebar */}
+      <aside className="w-64 h-screen bg-[#2f27ce] text-white shadow-sm flex flex-col justify-between">
+        <div>
+          <div
+            className="flex items-center justify-center mt-6 cursor-pointer"
+            onClick={onLogo}
           >
-            Logout
-          </button>
-          <button
-            onClick={onProfile}
-            className="flex flex-row justify-center items-center w-24 h-10 p-2 bg-blue-700 hover:bg-blue-800 text-white text-md rounded-full">
-            {UserData?.ExistingUser?.Username}
-            Profile
-          </button>
+            <MdOutlineInventory2 size={50} color="white" />
+            <span className="ml-3 text-2xl font-bold">InvenTrolly</span>
+          </div> <hr  className='mt-5'/>
+
+          <nav className="mt-10 flex flex-col">
+            <button
+              onClick={onLogo}
+              className="px-6 py-3 text-left hover:bg-white hover:text-black w-full"
+            >
+              Dashboard
+            </button>
+
+            <button
+              onClick={onInventory}
+              className="px-6 py-3 text-left hover:bg-white hover:text-black w-full"
+            >
+              Inventory Management
+            </button>
+
+            <button
+              onClick={onSuppliers}
+              className="px-6 py-3 text-left hover:bg-white hover:text-black w-full"
+            >
+              Supplier Management
+            </button>
+
+            <button
+              onClick={onSales}
+              className="px-6 py-3 text-left hover:bg-white hover:text-black w-full"
+            >
+              Sales Forecasting
+            </button>
+
+            <button
+              onClick={onSales}
+              className="px-6 py-3 text-left hover:bg-white hover:text-black w-full"
+            >
+              User Management
+            </button>
+          </nav>
         </div>
-      </div>
-    </header>
+
+        <div className="mb-6 px-6">
+          <div className="flex flex-col gap-3">
+            <button
+              onClick={onProfile}
+              className="flex items-center gap-2 px-4 py-2 bg-white text-black rounded hover:bg-blue-300 hover:text-white w-full"
+            >
+              <HiOutlineUser size={20} />
+              {UserData?.ExistingUser?.Username || 'Profile'}
+            </button>
+
+            <button
+              onClick={onLogout}
+              className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-500 w-full"
+            >
+              <HiOutlineLogout size={20} />
+              Logout
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      {/* Dynamic Content */}
+      <main className="flex w-full h-auto justify-center items-center">
+        {children}
+      </main>
+    </div>
   );
 };
 
-export default Navbar;
+export default Sidebar;

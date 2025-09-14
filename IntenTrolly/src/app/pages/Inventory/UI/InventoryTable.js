@@ -68,7 +68,7 @@ const InventoryTable = () => {
     }
 
     // ALL METHODS FOR API
-    useEffect(() => {
+    React.useEffect(() => {
         return () => {
             getProduct();
             totalProduct();

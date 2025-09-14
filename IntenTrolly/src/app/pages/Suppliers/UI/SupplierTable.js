@@ -69,7 +69,7 @@ const SupplierTable = () => {
     }
 
     // ALL METHODS FOR API
-    useEffect(() => {
+    React.useEffect(() => {
         return () => {
             getSupplier();
             Total_Supplier();

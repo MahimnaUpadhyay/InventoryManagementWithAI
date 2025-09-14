@@ -1,10 +1,10 @@
 import React from 'react'
-import AllRoutes from './AllRoutes'
+import HomePage from './pages/Home/page'
 
 const page = () => {
   return (
     <>
-      <AllRoutes />
+      <HomePage/>
     </>
   )
 }

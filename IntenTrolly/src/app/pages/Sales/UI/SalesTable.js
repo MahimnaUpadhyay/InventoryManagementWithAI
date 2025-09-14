@@ -72,7 +72,7 @@ const SalesTable = () => {
     }
 
     // ALL METHODS FOR API
-    useEffect(() => {
+    React.useEffect(() => {
         return () => {
             getSales();
             totalSales();
