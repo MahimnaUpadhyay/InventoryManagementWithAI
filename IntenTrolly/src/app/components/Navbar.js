@@ -36,6 +36,10 @@ const Sidebar = ({ children }) => {
     router.push('/pages/Sales');
   };
 
+  const onUserManagement = () => {
+    router.push('/pages/User');
+  }
+
   React.useEffect(() => {
     const storedUser = localStorage.getItem("user");
     const parseData = JSON.parse(storedUser);
@@ -85,7 +89,7 @@ const Sidebar = ({ children }) => {
             </button>
 
             <button
-              onClick={onSales}
+              onClick={onUserManagement}
               className="px-6 py-3 text-left hover:bg-white hover:text-black w-full"
             >
               User Management

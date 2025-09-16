@@ -10,7 +10,7 @@ export async function GET() {
     const response = await SupplierSchema.findAll();
 
     if (response.length === 0) {
-      return Response.json({ message: "Supplier Model is empty", response }, { status: 404 });
+      return Response.json({ message: "Supplier Model is empty", response }, { status: 200 });
     } else {
       return Response.json({ message: "Supplier Model Data", response }, { status: 200 }
       );

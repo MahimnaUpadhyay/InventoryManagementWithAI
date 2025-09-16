@@ -19,6 +19,7 @@ import InventoryUpdateModal from './InventoryUpdateModel';
 
 const InventoryTable = () => {
 
+    // State Variables aka Global variables
     const [Product_Data, setProduct_Data] = React.useState([]);
     const [TotalProduct, setTotalProduct] = React.useState([]);
     const [Loading, setLoading] = React.useState(false);

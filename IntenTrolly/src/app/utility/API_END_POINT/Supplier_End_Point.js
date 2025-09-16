@@ -1,6 +1,6 @@
-const getSupplierEndPoint = '/api/supplier'
-const postSupplierEndPoint = '/api/supplier'
-const putSupplierEndPoint = '/api/supplier'
-const deleteSupplierEndPoint = '/api/supplier'
+const getSupplierEndPoint = '/api/protected/supplier'
+const postSupplierEndPoint = '/api/protected/supplier'
+const putSupplierEndPoint = '/api/protected/supplier'
+const deleteSupplierEndPoint = '/api/protected/supplier'
 
 export {getSupplierEndPoint, postSupplierEndPoint, putSupplierEndPoint, deleteSupplierEndPoint}

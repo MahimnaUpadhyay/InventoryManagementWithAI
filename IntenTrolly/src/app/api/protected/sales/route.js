@@ -18,7 +18,7 @@ export async function GET() {
     });
 
     if (response.length === 0) {
-      return Response.json({ message: "Sales Model is empty", response }, { status: 404 });
+      return Response.json({ message: "Sales Model is empty", response }, { status: 200 });
     } else {
       return Response.json({ message: "Sales Model Data", response }, { status: 200 });
     }
