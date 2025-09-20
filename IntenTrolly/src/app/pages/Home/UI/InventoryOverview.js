@@ -1,6 +1,12 @@
+// React import
 import React from "react";
+
+// Component Import
 import Card from "@/app/components/Card";
+
+// React Icons
 import { MdInventory2 } from "react-icons/md";
+import { BiSolidCategoryAlt } from "react-icons/bi";
 
 const InventoryOverview = () => {
   return (
@@ -12,7 +18,7 @@ const InventoryOverview = () => {
       />
       <Card
         Card_Title="Total Categories"
-        Icon={<MdInventory2 size={50} />}
+        Icon={<BiSolidCategoryAlt size={50} />}
         Card_Content="100 unique categories"
       />
     </div>

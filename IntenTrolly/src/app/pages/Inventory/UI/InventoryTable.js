@@ -80,13 +80,13 @@ const InventoryTable = () => {
     if (Loading) {
         return <div className='flex w-full h-90 justify-center items-center gap-5'>
             <div
-                className='animate-bounce w-3 h-3 ring-blue-600 ring-4 rounded-full'
+                className='animate-bounce w-3 h-3 ring-primary ring-4 rounded-full'
             />
             <div
-                className='animate-bounce w-3 h-3 ring-blue-600 ring-4 rounded-full'
+                className='animate-bounce w-3 h-3 ring-primary ring-4 rounded-full'
             />
             <div
-                className='animate-bounce w-3 h-3 ring-blue-600 ring-4 rounded-full'
+                className='animate-bounce w-3 h-3 ring-primary ring-4 rounded-full'
             />
         </div>
     }
@@ -112,7 +112,7 @@ const InventoryTable = () => {
     return (
         <>
             <section className="w-full h-auto dark:bg-gray-900 sm:p-5">
-                <div className="w-full bg-gray-200 p-2 rounded-md lg:px-12">
+                <div className="w-full bg-white p-2 rounded-md shadow-md lg:px-12">
                     <div className="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
                         <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                             <div className="w-full md:w-1/2">
@@ -132,7 +132,7 @@ const InventoryTable = () => {
                                 <button
                                     onClick={onAddProduct}
                                     type="button"
-                                    className="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 gap-2"
+                                    className="flex items-center justify-center text-white bg-primary hover:bg-secondary focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 gap-2"
                                 >
                                     Add Product
                                     <FaPlus />
@@ -142,8 +142,8 @@ const InventoryTable = () => {
                             </div>
                         </div>
                         <div className="overflow-x-auto">
-                            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                                <thead className="text-xs text-white uppercase bg-blue-700 dark:bg-gray-700 dark:text-gray-400">
+                            <table className="w-full border-2 text-sm text-left text-gray-500 dark:text-gray-400">
+                                <thead className="text-xs text-white uppercase bg-primary dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
                                         <th scope="col" className="px-4 py-3">Product Name</th>
                                         <th scope="col" className="px-4 py-3">Category</th>
