@@ -21,7 +21,7 @@ const Navbar = ({ children }) => {
     router.push("/pages/Auth/Login");
   };
 
-  const onProfile = () => router.push("/profile");
+  const onProfile = () => router.push("/pages/Profile");
   const onLogo = () => router.push("/pages/Home");
   const onInventory = () => router.push("/pages/Inventory");
   const onSuppliers = () => router.push("/pages/Suppliers");
