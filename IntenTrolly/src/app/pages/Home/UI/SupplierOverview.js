@@ -1,8 +1,6 @@
-"use client"
+"use client";
 
-import React from 'react'
-
-// ChartJS
+import React from "react";
 import {
   Chart as ChartJS,
   BarElement,
@@ -10,41 +8,36 @@ import {
   LinearScale,
   Tooltip,
   Legend,
-} from 'chart.js'
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
 
-import { Bar } from 'react-chartjs-2'
-
-ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend)
+ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 const SupplierOverview = () => {
   const data = {
-    labels: ['Supplier A', 'Supplier B', 'Supplier C', 'Supplier D'],
+    labels: ["Supplier A", "Supplier B", "Supplier C", "Supplier D"],
     datasets: [
       {
-        label: 'Supplier Overview',
+        label: "Supplier Overview",
         data: [120, 190, 75, 100],
-        backgroundColor: 'rgba(47, 39, 206, 1)',
-        borderRadius: 6,
+        backgroundColor: "#93cc49",
+        borderRadius: 8,
       },
     ],
-  }
+  };
 
-  const options = { 
+  const options = {
     responsive: true,
     plugins: {
-      legend: {
-        position: 'top',
-      },
+      legend: { position: "top" },
     },
-  }
+  };
 
   return (
-    <div className="flex w-full h-full bg-gray-100 justify-center items-center rounded-md p-4">
-      <div className="w-full bg-white rounded-lg shadow-lg p-2">
-        <Bar data={data} options={options} />
-      </div>
+    <div className="flex w-full h-full bg-white rounded-2xl shadow-md p-5">
+      <Bar data={data} options={options} />
     </div>
-  )
-}
+  );
+};
 
-export default SupplierOverview
+export default SupplierOverview;

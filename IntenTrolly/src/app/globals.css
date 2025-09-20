@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    background-color: #fbfbfe;
+@layer base {
+  :root {
+    --text: #141b0b;
+    --background: #fafcf7;
+    --primary: #93cc49;
+    --secondary: #c1e691;
+    --accent: #a8e25d;
+  }
+  .dark {
+    --text: #eef5e6;
+    --background: #060703;
+    --primary: #7eb734;
+    --secondary: #486c19;
+    --accent: #67a01c;
+  }
 }

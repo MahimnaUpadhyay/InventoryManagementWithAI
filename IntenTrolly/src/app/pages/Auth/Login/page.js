@@ -16,7 +16,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // React ICONS
-import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { MdOutlineInventory2 } from 'react-icons/md';
 
 const page = () => {
@@ -65,22 +64,21 @@ const page = () => {
   return (
     <>
       <div className='grid grid-cols-2 w-full h-screen place-items-center'>
-
-        <div className='bg-blue-500 h-full w-full flex flex-col justify-center items-center text-white'>
+        <div className='bg-primary h-full w-full flex flex-col justify-center items-center text-white'>
           <div className='mb-3'>
-            <MdOutlineInventory2 size={60} color="white" />
+            <MdOutlineInventory2 size={100} color="white" />
           </div>
-          <h1 className='text-3xl'>Explore the World's Best <span className='font-bold'>Inventrolly</span></h1>
-          <p className='w-[510px] h-auto mt-3 text-lg justify-start'>
-            Manage your business with one of the best platform in industry, Introducing
-            <span className='font-bold ml-1 mr-1'>
+          <h1 className='text-3xl'>Explore the Best <span className='font-bold'>Inventrolly</span></h1>
+          <p className='w-[510px] h-auto mt-3 text-lg text-justify'>
+            Manage your business with one of the best platform in industry, Introducing{" "}
+            <span className='font-bold'>
               Inventrolly.
             </span>
-            One of the top leading industry product, which will make your business
-            <span className='font-bold ml-1 mr-1'>
+            {" "}One of the top leading industry product, which will make your business{" "}
+            <span className='font-bold'>
               "trolly"
             </span>
-            better.
+            {" "}better.
           </p>
         </div>
 
@@ -109,7 +107,7 @@ const page = () => {
               />
               <button
                 onClick={OnLogin}
-                className="w-full bg-blue-500 hover:bg-blue-600 text-white 
+                className="w-full bg-accent hover:bg-primary text-white 
                 text-lg rounded-lg mt-5 p-2">
                 Sign in to your account
               </button>

@@ -1,48 +1,49 @@
-"use client"
+"use client";
 
-import React from 'react';
-
-// For API
-import axios from 'axios';
-import { ML_BASE_URL } from '@/app/utility/API_END_POINT/Base_URL';
-import { askQuestion } from '@/app/utility/API_END_POINT/Chatbot_End_Point';
+import React from "react";
+import axios from "axios";
+import { ML_BASE_URL } from "@/app/utility/API_END_POINT/Base_URL";
+import { askQuestion } from "@/app/utility/API_END_POINT/Chatbot_End_Point";
 
 const Chatbot = () => {
-  const [chatbot, setChatbot] = React.useState({question: ''});
+  const [chatbot, setChatbot] = React.useState({ question: "" });
 
   const askChatbot = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       const response = await axios.post(`${ML_BASE_URL}${askQuestion}`, chatbot);
-      console.log(response.data)
+      console.log(response.data);
     } catch (error) {
       console.error(error.response?.data || error.message);
     }
-  }
+  };
 
-  const onQuestionChange = (e) => {
-    setChatbot({...chatbot, question: e.target.value});
-  }
+  const onQuestionChange = () => {
+    setChatbot({ ...chatbot, question: e.target.value });
+  };
 
   return (
-    <div className="flex w-full h-auto bg-gray-100 justify-center items-center rounded-md p-5">
-      <div className="flex flex-row w-full h-[100px] justify-around items-center bg-white rounded-lg shadow-lg gap-5 p-5">
-        <input 
-          placeholder="Hey there!!"
-          type='text'
-          value={chatbot?.question}
+    <div className="w-full bg-white rounded-2xl shadow-md p-5">
+      <form
+        onSubmit={askChatbot}
+        className="flex items-center gap-3 w-full"
+      >
+        <input
+          placeholder="Ask me anything..."
+          type="text"
+          value={chatbot.question}
           onChange={onQuestionChange}
-          className="w-full border-2 p-2 rounded-xl"
+          className="flex-1 border-2 border-gray-200 p-2 rounded-lg focus:ring-2 focus:ring-primary outline-none"
         />
-        <button 
-          onClick={askChatbot} 
-          className="bg-[#2f27ce] rounded-lg w-[100px] h-[30px] text-white hover:cursor-pointer"
+        <button
+          type="submit"
+          className="bg-primary hover:bg-accent transition-colors px-4 py-2 rounded-lg text-white font-medium"
         >
           Ask
         </button>
-      </div>
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default Chatbot
+export default Chatbot;

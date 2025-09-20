@@ -53,7 +53,7 @@ const page = () => {
         <>
             <div className="grid grid-cols-2 w-full h-screen place-items-center">
                 <div className="flex flex-col">
-                    <h1 className="text-black text-2xl font-bold">Hey There!</h1>
+                    <h1 className="text-text text-2xl font-bold">Hey There!</h1>
                     <hr className="border-gray-800 rounded-full mt-2" />
                     <div className="w-[450px] mt-5">
                         <form className="flex flex-col justify-center items-center" onSubmit={OnSignUp}>
@@ -83,20 +83,20 @@ const page = () => {
                             />
                             <button
                                 type="submit"
-                                className="w-full bg-blue-500 hover:bg-blue-600 text-white text-lg rounded-lg mt-5 p-2"
+                                className="w-full bg-primary hover:bg-accent text-white text-lg rounded-lg mt-5 p-2"
                             >
                                 Create Account
                             </button>
                             <ToastContainer />
                         </form>
 
-                        <h1 className='flex w-full justify-center mt-5 font-bold'>Already have account</h1>
+                        <h1 className='flex w-full justify-center mt-5 font-bold text-sm'>Already have account</h1>
 
                         <div className='flex w-full justify-center'>
                             <button
                                 onClick={()=>router.push("/pages/Auth/Login")}
-                                className="flex justify-center gap-3 items-center w-[215px] bg-gray-200 hover:bg-gray-300
-                                 text-black text-lg rounded-lg mt-5 p-2">
+                                className="flex justify-center gap-3 items-center w-[215px] bg-gray-200 hover:bg-primary hover:text-white 
+                                text-black text-lg rounded-lg mt-5 p-2">
                                 Login
 
                                 <FaArrowRight />
@@ -105,14 +105,14 @@ const page = () => {
                     </div>
                 </div>
 
-                <div className="bg-blue-500 h-full w-full flex flex-col justify-center items-center text-white">
+                <div className="bg-primary h-full w-full flex flex-col justify-center items-center text-white">
                     <div className="mb-3">
-                        <MdOutlineInventory2 size={60} color="white" />
+                        <MdOutlineInventory2 size={100} color="white" />
                     </div>
                     <h1 className="text-3xl">
-                        Explore the World's Best <span className="font-bold">Inventrolly</span>
+                        Explore the best{" "}<span className="font-bold">Inventrolly</span>
                     </h1>
-                    <p className="w-[510px] mt-3 text-lg text-start">
+                    <p className="w-[510px] mt-3 text-lg text-justify">
                         Manage your business with one of the best platforms in the industry, introducing{" "}
                         <span className="font-bold">Inventrolly</span>.
                         One of the top leading industry products, designed to make your business

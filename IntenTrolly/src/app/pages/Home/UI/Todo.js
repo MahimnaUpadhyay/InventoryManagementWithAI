@@ -1,28 +1,24 @@
-import React from 'react'
+import React from "react";
 
 const Todo = () => {
-    return (
-        <>
-            <div className="flex flex-col w-full h-auto bg-gray-100 justify-center items-center rounded-md p-5">
-                <div className="w-full p-5 bg-white rounded-lg shadow-lg">
-                    <ul>
-                        <li>
-                            <input type="checkbox" id="mail" name="mail" value="mail" className="mr-2"/> Check Mail
-                        </li>
-                        <li>
-                            <input type="checkbox" id="mail" name="mail" value="mail" className="mr-2"/> Check Stocks
-                        </li>
-                        <li>
-                            <input type="checkbox" id="mail" name="mail" value="mail" className="mr-2"/> Check Sales
-                        </li>
-                        <li>
-                            <input type="checkbox" id="mail" name="mail" value="mail" className="mr-2"/> Check Products
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </>
-    )
-}
+  const todos = ["Check Mail", "Check Stocks", "Check Sales", "Check Products"];
 
-export default Todo
+  return (
+    <div className="w-full bg-white rounded-2xl shadow-md p-5">
+      <h3 className="text-lg font-semibold mb-4 text-text">Todo List</h3>
+      <ul className="space-y-2">
+        {todos.map((task, idx) => (
+          <li key={idx} className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-accent"
+            />
+            <span className="text-gray-700">{task}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default Todo;
