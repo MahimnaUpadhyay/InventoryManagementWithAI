@@ -2,6 +2,23 @@ import UserSchema from "@/MODELS/User";
 import { DB_Connect } from "@/DATABASE/DB_CONNECTION";
 import { generateToken } from "@/app/utility/JWT";
 
+// Get User
+export async function GET() {
+  try {
+    await DB_Connect();
+    const response = await UserSchema.findAll();
+
+    if (response.length == 0) {
+      return Response.json({ message: "User Model is empty", response }, { status: 200 });
+    } else {
+      return Response.json({ message: "User Model Data", response }, { status: 200 });
+    }
+
+  } catch (error) {
+    console.log('Error', error);
+  }
+}
+
 // Login 
 export async function POST(req) {
   try {
@@ -23,7 +40,7 @@ export async function POST(req) {
     const token = generateToken(user);
 
     return Response.json(
-      { message: "Login successful", token, user: { id: user.user_ID, username: user.User_Name ,email: user.User_Email, role: user.User_Role } },
+      { message: "Login successful", token, user: { id: user.user_ID, username: user.User_Name, email: user.User_Email, role: user.User_Role } },
       { status: 200 }
     );
   } catch (error) {

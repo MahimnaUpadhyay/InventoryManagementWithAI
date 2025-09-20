@@ -1,5 +1,6 @@
 const loginEndPoint = "/api/Auth/login"
 const signinEndPoint = "/api/Auth/register"
-const logoutEndPoint = "/api/auth/logout"
+const getUserEndPoint = "/api/Auth/login"
+const postUserEndPoint = "/api/Auth/register"
 
-export {loginEndPoint, signinEndPoint, logoutEndPoint}
+export {loginEndPoint, signinEndPoint, getUserEndPoint, postUserEndPoint}
