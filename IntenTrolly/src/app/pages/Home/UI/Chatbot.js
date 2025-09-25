@@ -18,7 +18,7 @@ const Chatbot = () => {
     }
   };
 
-  const onQuestionChange = () => {
+  const onQuestionChange = (e) => {
     setChatbot({ ...chatbot, question: e.target.value });
   };
 
