@@ -5,6 +5,7 @@ import Card from "@/app/components/Card";
 import { FaShoppingCart, FaChartLine } from "react-icons/fa";
 import Header from "@/app/components/Header";
 import axios from "axios";
+import ForecastUI from "./UI/ForecastUI";
 
 const SalesPage = () => {
   const [forecast, setForecast] = useState(null);
@@ -145,6 +146,8 @@ const SalesPage = () => {
         <h2 className="text-xl font-semibold text-text mb-4">Sales Details</h2>
         <SalesTable />
       </div> */}
+
+      {/* <ForecastUI /> */}
     </div>
   );
 };
