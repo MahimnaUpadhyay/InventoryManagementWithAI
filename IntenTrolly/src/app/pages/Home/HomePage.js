@@ -27,7 +27,7 @@ const HomePage = () => {
         <SupplierOverview />
 
         <div className="flex flex-col gap-6">
-          <Todo />
+          {/* <Todo /> */}
           <Chatbot />
         </div>
       </div>

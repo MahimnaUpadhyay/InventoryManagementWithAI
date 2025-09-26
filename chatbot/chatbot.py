@@ -53,8 +53,8 @@ def fuzzy_intent_match(question, threshold=70):
     for intent, phrases in INTENTS.items():
         match, score, _ = process.extractOne(question, phrases, scorer=fuzz.partial_ratio)
         if score >= threshold:
-            return intent
-    return None
+            return intent, score / 100.0  # normalize to 0-1
+    return None, 0.0
 
 
 # Embedding-based Matching
@@ -64,8 +64,8 @@ def semantic_intent_match(question, threshold=0.6):
     best_idx = torch.argmax(cos_scores).item()
     best_score = cos_scores[best_idx].item()
     if best_score >= threshold:
-        return intent_labels[best_idx]
-    return None
+        return intent_labels[best_idx], best_score
+    return None, 0.0
 
 
 # Intent-based Response
@@ -91,8 +91,8 @@ def intent_response(df, intent):
 # QA Pipeline Fallback
 qa_pipeline = pipeline(
     "question-answering",
-    model="timpal0l/mdeberta-v3-base-squad2",
-    tokenizer="timpal0l/mdeberta-v3-base-squad2",
+    model="deepset/roberta-base-squad2",
+    tokenizer="deepset/roberta-base-squad2",
     device=0 if torch.cuda.is_available() else -1,
 )
 
@@ -110,15 +110,15 @@ def embed_and_answer(df, question):
 # Master chatbot function
 def chatbot(df, question):
     # Try fuzzy intent
-    intent = fuzzy_intent_match(question)
+    intent, score = fuzzy_intent_match(question)
     if intent:
-        return intent_response(df, intent)
+        return intent_response(df, intent), round(score, 4)
 
     # Try semantic intent
-    intent = semantic_intent_match(question)
+    intent, score = semantic_intent_match(question)
     if intent:
-        return intent_response(df, intent)
+        return intent_response(df, intent), round(score, 4)
 
     # Fallback to QA pipeline
     answer, score = embed_and_answer(df, question)
-    return f"Answer: {answer} (confidence: {score})"
+    return answer, score

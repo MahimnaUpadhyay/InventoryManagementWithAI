@@ -33,8 +33,8 @@ async def ask_question(query: Query):
     question = query.question
 
     try:
-        answer = chatbot(df, question)
-        return {"answer": answer}
+        answer, confidence = chatbot(df, question)
+        return {"answer": answer, "confidence": confidence}
     except Exception as e:
         return {"error": str(e)}
 
