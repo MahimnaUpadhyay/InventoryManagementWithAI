@@ -4,7 +4,7 @@ import { DataTypes } from "sequelize";
 const ProductSchema = sequelize.define(
     "Product",
     {
-        product_ID: {type: DataTypes.INTEGER, primaryKey: true},
+        product_ID: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
         Product_Name: { type: DataTypes.STRING, allowNull: false },
         Category: {
             type: DataTypes.ENUM(

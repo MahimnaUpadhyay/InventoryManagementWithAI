@@ -5,7 +5,6 @@ import Card from "@/app/components/Card";
 import { FaShoppingCart, FaChartLine } from "react-icons/fa";
 import Header from "@/app/components/Header";
 import axios from "axios";
-import ForecastUI from "./UI/ForecastUI";
 
 const SalesPage = () => {
   const [forecast, setForecast] = useState(null);
@@ -74,14 +73,31 @@ const SalesPage = () => {
       <div className="bg-white p-6 rounded-2xl shadow-md w-full">
         <h2 className="text-xl font-semibold text-text mb-4">Forecast Sales</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <input
-            type="text"
+          {/* Category Dropdown */}
+          <select
             name="Catagory"
-            placeholder="Category"
             value={formData.Catagory}
             onChange={handleChange}
             className="border p-2 rounded-lg"
-          />
+          >
+            <option value="" disabled>
+              Select Category
+            </option>
+            {[
+              "Fruits & Vegetables",
+              "Oils & Fats",
+              "Dairy",
+              "Grains & Pulses",
+              "Seafood",
+              "Bakery",
+              "Beverages",
+            ].map((cat) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </select>
+
           <input
             type="number"
             name="Stock_Quantity"
@@ -140,14 +156,6 @@ const SalesPage = () => {
           </div>
         )}
       </div>
-
-      {/* Sales Table */}
-      {/* <div className="bg-white p-6 rounded-2xl shadow-md w-full">
-        <h2 className="text-xl font-semibold text-text mb-4">Sales Details</h2>
-        <SalesTable />
-      </div> */}
-
-      {/* <ForecastUI /> */}
     </div>
   );
 };
