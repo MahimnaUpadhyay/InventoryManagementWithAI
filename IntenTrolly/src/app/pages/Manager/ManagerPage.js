@@ -4,8 +4,8 @@ import React from "react";
 import SalesOverview from "./UI/SalesOverview";
 import InventoryOverview from "./UI/InventoryOverview";
 import SupplierOverview from "./UI/SupplierOverview";
-import Chatbot from "./UI/Chatbot";
 import Header from "@/app/components/Header";
+import EmployeeOverview from "./UI/EmployeeOverview";
 
 
 const HomePage = () => {
@@ -22,12 +22,12 @@ const HomePage = () => {
       </div>
 
       {/* Section 2 */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <SupplierOverview />
-
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+        <div>
+          <SupplierOverview />
+        </div>
         <div className="flex flex-col gap-6">
-          {/* <Todo /> */}
-          <Chatbot />
+          <EmployeeOverview />
         </div>
       </div>
     </div>
