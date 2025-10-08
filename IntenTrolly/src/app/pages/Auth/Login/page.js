@@ -36,6 +36,17 @@ const page = () => {
       if (!user || !token) {
         toast.error("Please enter valid details");
       } else {
+
+        const role = user.role.toLowerCase();
+
+        if (role == "employee") {
+          router.push('/pages/Employee');
+        } else if (role == "manager") {
+          router.push('/pages/Manager');
+        } else {
+          router.push('/pages/Home');
+        }
+
         toast.success("Login In Successful!");
 
         // Storing the token
@@ -43,9 +54,6 @@ const page = () => {
 
         // storing the user data
         localStorage.setItem('user', JSON.stringify(user));
-
-        // Redirect to login page
-        router.push('/pages/Home');
       }
     } catch (error) {
       console.error("There was an error during sign up:", error);

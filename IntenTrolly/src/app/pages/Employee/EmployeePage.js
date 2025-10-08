@@ -12,7 +12,7 @@ const EmployeePage = () => {
   return (
     <div className="flex flex-col w-full h-[100vh] items-center justify-evenly bg-background p-6 gap-6">
       <Header
-        PageHeader={'System Overview'}
+        PageHeader={'Employee Dashboard'}
         Subtext={'Track and Manage whole system efficiently'}
       />
       {/* Section 1 */}
