@@ -13,12 +13,12 @@ import { Bar } from "react-chartjs-2";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
-const SupplierOverview = () => {
+const CategoryOverview = () => {
   const data = {
-    labels: ["Supplier A", "Supplier B", "Supplier C", "Supplier D"],
+    labels: ["Category A", "Category B", "Category C", "Category D"],
     datasets: [
       {
-        label: "Supplier Overview",
+        label: "Category Overview",
         data: [120, 190, 75, 100],
         backgroundColor: "#93cc49",
         borderRadius: 8,
@@ -40,4 +40,4 @@ const SupplierOverview = () => {
   );
 };
 
-export default SupplierOverview;
+export default CategoryOverview;
