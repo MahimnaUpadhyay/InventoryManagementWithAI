@@ -5,15 +5,16 @@ import uvicorn
 import joblib
 import pandas as pd
 
-# Import chatbot function
-from chatbot import load_data_mysql, chatbot
+# Import from chatbot.py
+from chatbot import load_data_mysql, build_chatbot
+
 
 app = FastAPI()
 
 origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "http://localhost:8000"
+    "http://localhost:8000",
 ]
 
 app.add_middleware(
@@ -24,16 +25,28 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Load chatbot data
+# ----------------------------
+# Global initialization
+# ----------------------------
+
+# Load inventory data once
 df = load_data_mysql()
+
+# Build stateful chatbot with cached embeddings
+chatbot = build_chatbot(df)
 
 # Load trained ML model + feature columns
 model = joblib.load("linear_model.pkl")
 feature_columns = joblib.load("feature_columns.pkl")
 
+
+# ----------------------------
 # Request models
+# ----------------------------
+
 class Query(BaseModel):
     question: str
+
 
 class ForecastInput(BaseModel):
     Catagory: str
@@ -44,16 +57,19 @@ class ForecastInput(BaseModel):
     Sales_Volume: int
 
 
-# Preprocess function (same as training pipeline)
+# ----------------------------
+# Forecast preprocessing
+# ----------------------------
+
 def preprocess_input(data: dict):
     df = pd.DataFrame([data])
 
-    # Convert to correct types
+    # Types
     df["Unit_Price"] = df["Unit_Price"].astype(float)
     df["Date_Received"] = pd.to_datetime(df["Date_Received"])
     df["Last_Order_Date"] = pd.to_datetime(df["Last_Order_Date"])
 
-    # Extract date parts
+    # Date parts
     df["received_year"] = df["Date_Received"].dt.year
     df["received_month"] = df["Date_Received"].dt.month
     df["received_day"] = df["Date_Received"].dt.day
@@ -65,7 +81,7 @@ def preprocess_input(data: dict):
     # Days between
     df["days_between"] = (df["Last_Order_Date"] - df["Date_Received"]).dt.days
 
-    # Lag & rolling (placeholder with Sales_Volume since single-row)
+    # Lag & rolling (single-row placeholders)
     for lag in [1, 3, 7]:
         df[f"sales_lag_{lag}"] = df["Sales_Volume"]
 
@@ -87,17 +103,32 @@ def preprocess_input(data: dict):
     return df
 
 
-# Chatbot endpoint
+# ----------------------------
+# Endpoints
+# ----------------------------
+
 @app.post("/askQuestion")
 async def ask_question(query: Query):
     try:
-        answer, confidence = chatbot(df, query.question)
-        return {"answer": answer, "confidence": confidence}
+        result = chatbot(query.question)
+        if result["mode"] == "intent":
+            return {
+                "mode": "intent",
+                "intent": result["intent"],
+                "answer": result["answer"],
+                "confidence": result["intent_score"],
+                "products": result.get("products", []),
+            }
+        else:
+            return {
+                "mode": "qa",
+                "answer": result["answer"],
+                "confidence": result["qa_score"],
+                "products": [],
+            }
     except Exception as e:
         return {"error": str(e)}
 
-
-# Forecast endpoint
 @app.post("/forecast")
 async def forecast(data: ForecastInput):
     try:

@@ -1,5 +1,5 @@
 {
-  "low_stock": ["low in stock", "kam hai stock mai", "products with low quantity"],
+  "low_stock": ["low in stock", "kam stock", "products with low quantity"],
   "highest_sales": ["highest sales", "sabse zyada sales", "most selling product"],
   "discontinued": ["discontinued", "band kar diya"],
   "cheapest": ["cheapest", "sasta product"],
