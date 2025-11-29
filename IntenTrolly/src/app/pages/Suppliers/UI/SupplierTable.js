@@ -6,7 +6,7 @@ import React from 'react'
 // FOR API CALL
 import axios from 'axios';
 import { BASE_URL } from '@/app/utility/API_END_POINT/Base_URL.js';
-import {getSupplierEndPoint, posSuppliertEndPoint } from '@/app/utility/API_END_POINT/Supplier_End_Point.js';
+import { getSupplierEndPoint, posSuppliertEndPoint } from '@/app/utility/API_END_POINT/Supplier_End_Point.js';
 
 // ICONS
 import { FaPlus, FaSearch } from 'react-icons/fa';
@@ -161,7 +161,7 @@ const SupplierTable = () => {
                                                 <th scope="row" className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{data?.supplierName}</th>
                                                 <td className="px-4 py-3">{data?.supplierAddress}</td>
                                                 <td className="px-4 py-3">{data?.supplierPhone}</td>
-                                                <td className="px-4 py-3">${data?.supplierRate}</td><td className="px-4 py-3 flex items-center justify-end">
+                                                <td className="px-4 py-3">₹ {data?.supplierRate}</td><td className="px-4 py-3 flex items-center justify-end">
                                                     <button
                                                         type="button"
                                                         onClick={onUpdateSupplier}

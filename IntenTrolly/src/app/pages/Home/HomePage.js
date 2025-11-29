@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react";
 
 // Components Import
@@ -6,7 +8,6 @@ import InventoryOverview from "./UI/InventoryOverview";
 import SupplierOverview from "./UI/SupplierOverview";
 import Chatbot from "./UI/Chatbot";
 import Header from "@/app/components/Header";
-
 
 const HomePage = () => {
   return (

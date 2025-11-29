@@ -27,7 +27,10 @@ const SupplierAddModal = ({ closeModal }) => {
     const addSupplier = async (e) => {
         e.preventDefault()
         try {
-            const request = await axios.post(`${BASE_URL}${postSupplierEndPoint}`, addSupplierData);
+            const token = localStorage.getItem("token");
+            const request = await axios.post(`${BASE_URL}${postSupplierEndPoint}`, addSupplierData, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
 
             if (!request) {
                 toast.error("Failed to add supplier");

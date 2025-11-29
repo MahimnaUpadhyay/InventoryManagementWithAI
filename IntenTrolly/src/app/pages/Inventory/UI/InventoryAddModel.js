@@ -164,7 +164,7 @@ const InventoryAddModal = ({ closeModal }) => {
                             {suppliers.length > 0 ? (
                                 suppliers.map((supplier) => (
                                     <option key={supplier.Supplier_ID} value={supplier.Supplier_ID}>
-                                        {supplier.Supplier_Name}
+                                        {supplier.supplierName}
                                     </option>
                                 ))
                             ) : (

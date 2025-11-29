@@ -1,13 +1,40 @@
+"use client"
+
 import React from 'react';
+
 import SupplierTable from './UI/SupplierTable';
 import Card from '@/app/components/Card';
 import { FaUsers, FaTruck } from "react-icons/fa";
 import Header from '@/app/components/Header';
 
+import { BASE_URL } from '@/app/utility/API_END_POINT/Base_URL'
+import { getSupplierEndPoint } from '@/app/utility/API_END_POINT/Supplier_End_Point'
+import axios from 'axios';
+
+
 const SuppliersPage = () => {
+
+  const [SupplierLength, setSupplierLength] = React.useState([]);
+
+  // Count total no of supplier
+  const totalSupplierLength = async () => {
+    try {
+      const request = await axios.get(`${BASE_URL}${getSupplierEndPoint}`);
+      const supplier_data = request?.data?.response;
+      const supplier_name = supplier_data.map(supplier => (supplier.supplierName));
+      setSupplierLength(supplier_name);
+    } catch (error) {
+      console.log("There is an error in total supplier length function", error);
+    }
+  }
+
+  React.useEffect(() => {
+    totalSupplierLength();
+  }, []);
+
   return (
     <div className="flex flex-col w-full h-[100vh] bg-background p-6 gap-6">
-      <Header 
+      <Header
         PageHeader={'Supplier Overview'}
         Subtext={'Track and Manage supplier efficiently'}
       />
@@ -17,7 +44,7 @@ const SuppliersPage = () => {
             <Card
               Card_Title="Total Suppliers"
               Icon={<FaUsers size={50} />}
-              Card_Content="250 suppliers"
+              Card_Content={`${SupplierLength.length} suppliers`}
             />
           </div>
 

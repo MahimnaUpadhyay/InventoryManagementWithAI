@@ -1,4 +1,7 @@
+"use client"
+
 import React from "react";
+import axios from 'axios';
 
 import Card from "@/app/components/Card";
 import Header from "@/app/components/Header";
@@ -9,7 +12,44 @@ import { FaUserTie } from "react-icons/fa6";
 import { FaUserFriends } from "react-icons/fa";
 import { FaBuildingUser } from "react-icons/fa6";
 
+import {BASE_URL} from '@/app/utility/API_END_POINT/Base_URL';
+import {getUserEndPoint} from '@/app/utility/API_END_POINT/Autho_End_Point';
+
 const UserPage = () => {
+
+  const [TotalUser, setTotalUser] = React.useState([]);
+  const [TotalManager, setTotalManager] = React.useState([]);
+  const [TotalEmployee, setTotalEmployee] = React.useState([]);
+
+  const countTotalUser = async() => {
+    try {
+      const request = await axios(`${BASE_URL}${getUserEndPoint}`);
+      const user_data = request.data.response;
+      const user_name = user_data.map(user=>(user.User_Name));
+      // const user_role = user_data.map(user=>(user.User_Role));
+
+      // will get total user value
+      setTotalUser(user_name);
+
+      let manager = [];
+      let employee = [];
+      if(user_name.User_Role == "Manager"){
+        manager.push(user_name);
+        setTotalManager(manager);
+      } else {
+        employee.push(user_name);
+        setTotalEmployee(employee);
+      }
+
+    } catch (error) {
+      console.log("There is an error in countTotalUser function", error);
+    }
+  }
+
+  React.useEffect(()=>{
+    countTotalUser();
+  },[])
+
   return (
     <div className="flex flex-col w-full min-h-screen bg-background p-8 gap-8">
       {/* Page Header */}
@@ -22,7 +62,7 @@ const UserPage = () => {
         <Card
           Card_Title="Total Users"
           Icon={<FaUserCheck size={50} />}
-          Card_Content="100 Users"
+          Card_Content={`${TotalUser.length} Users`}
         />
 
         <Card
@@ -34,13 +74,13 @@ const UserPage = () => {
         <Card
           Card_Title="Total Manager"
           Icon={<FaUserTie size={50} />}
-          Card_Content="10 Manager"
+          Card_Content={`${TotalManager.length} Managers`}
         />
 
         <Card
           Card_Title="Total Employeees"
           Icon={<FaUserFriends size={50} />}
-          Card_Content="89 Employees"
+          Card_Content={`${TotalEmployee.length} Employees`}
         />
       </div>
 
