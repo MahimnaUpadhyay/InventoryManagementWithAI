@@ -214,7 +214,7 @@ def build_chatbot(df: pd.DataFrame):
                 "intent": intent,
                 "intent_score": intent_score,
                 "answer": text,
-                "products": products,   # <--- new
+                "products": products, 
             }
 
         answer, qa_score = inventory.answer(question)
