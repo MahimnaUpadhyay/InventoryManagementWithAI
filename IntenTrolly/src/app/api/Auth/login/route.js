@@ -1,6 +1,7 @@
 import UserSchema from "@/MODELS/User";
 import { DB_Connect } from "@/DATABASE/DB_CONNECTION";
-import { generateToken } from "@/app/utility/JWT";
+import { generateToken, verifyToken } from "@/app/utility/JWT";
+import bcrypt from "bcrypt";
 
 // Get User
 export async function GET() {
@@ -48,3 +49,4 @@ export async function POST(req) {
     return Response.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
+
