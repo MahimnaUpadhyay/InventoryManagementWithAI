@@ -27,16 +27,22 @@ const page = () => {
     User_Password: ''
   });
 
+  const [loading, setloading] = React.useState(false);
+
   const OnLogin = async (e) => {
     e.preventDefault()
     try {
       const response = await axios.post(`${BASE_URL}${loginEndPoint}`, User);
       const { user, token } = response?.data;
 
+      setloading(true);
+
       if (!user || !token) {
         toast.error("Please enter valid details");
+        setloading(false);
       } else {
 
+        setloading(true);
         const role = user.role.toLowerCase();
 
         if (role == "employee") {
@@ -48,6 +54,7 @@ const page = () => {
         }
 
         toast.success("Login In Successful!");
+        setloading(false);
 
         // Storing the token
         localStorage.setItem('token', token);
@@ -102,6 +109,7 @@ const page = () => {
                 placeholder='Enter your Email'
                 onChange={onEmailChange}
                 className='w-full border-2 p-2 rounded-md text-black bg-gray-100'
+                disabled={loading}
                 required
               />
               <input
@@ -111,16 +119,21 @@ const page = () => {
                 placeholder='Enter your password'
                 onChange={onPasswordChange}
                 className='w-full border-2 p-2 rounded-md text-black bg-gray-100 mt-5'
+                disabled={loading}
                 required
               />
               <button
                 onClick={OnLogin}
+                disabled={loading}
                 className="w-full bg-accent hover:bg-primary text-white 
                 text-lg rounded-lg mt-5 p-2">
-                Sign in to your account
+                {loading ? "Signing in..." : "Sign in to your account"}
               </button>
               <ToastContainer />
             </form>
+            <h1 className='flex w-full justify-start mt-5 font-semibold text-sm cursor-pointer' onClick={() => router.push('/pages/Auth/ForgotPwd')}>
+              forgot your password?
+            </h1>
           </div>
         </div>
       </div>
