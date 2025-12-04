@@ -12,8 +12,7 @@ export async function GET() {
     if (response.length === 0) {
       return Response.json({ message: "Supplier Model is empty", response }, { status: 200 });
     } else {
-      return Response.json({ message: "Supplier Model Data", response }, { status: 200 }
-      );
+      return Response.json({ message: "Supplier Model Data", response }, { status: 200 });
     }
   } catch (error) {
     console.log("Error in supplier GET method:", error);
@@ -34,7 +33,7 @@ export async function POST(req) {
     if (!user) {
       return Response.json({ message: "Unauthorized" }, { status: 401 });
     } else if (!authorizeRole(user, ["Admin", "Manager"])) {
-      return Response.json({ message: "Forbidden - insufficient role" }, { status: 200 });
+      return Response.json({ message: "Forbidden - insufficient role" }, { status: 403 });
     } else if (!body || Object.keys(body).length === 0) {
       return Response.json({ message: "Body is empty", body }, { status: 400 });
     } else {
@@ -43,6 +42,76 @@ export async function POST(req) {
     }
   } catch (error) {
     console.log("Error in Supplier POST method:", error);
+    return Response.json({ error: "Internal Server Error" }, { status: 500 });
+  }
+}
+
+// Update Supplier
+export async function PUT(req) {
+  try {
+    await DB_Connect();
+
+    const token = req.headers.get("authorization")?.split(" ")[1];
+    const user = verifyToken(token);
+
+    const body = await req.json();
+    const { supplier_ID, ...updatedData } = body;
+
+    if (!user) {
+      return Response.json({ message: "Unauthorized" }, { status: 401 });
+    } else if (!authorizeRole(user, ["Admin", "Manager"])) {
+      return Response.json({ message: "Forbidden - insufficient role" }, { status: 200 });
+    } else if (!supplier_ID) {
+      return Response.json({ message: "Supplier ID required" }, { status: 400 });
+    }
+
+    const supplier = await SupplierSchema.findOne({ where: { supplier_ID } });
+
+    if (!supplier) {
+      return Response.json({ message: "Supplier Not Found" }, { status: 404 });
+    }
+
+    await supplier.update(updatedData);
+
+    return Response.json({ message: "Supplier Updated", supplier }, { status: 200 });
+
+  } catch (error) {
+    console.log("Error in Supplier PUT method:", error);
+    return Response.json({ error: "Internal Server Error" }, { status: 500 });
+  }
+}
+
+// Delete Supplier
+export async function DELETE(req) {
+  try {
+    await DB_Connect();
+
+    const token = req.headers.get("authorization")?.split(" ")[1];
+    const user = verifyToken(token);
+
+    const body = await req.json();
+    const {supplier_ID} = body;
+
+    if (!user) {
+      return Response.json({ message: "Unauthorized" }, { status: 401 });
+    } else if (!authorizeRole(user, ["Admin"])) {
+      return Response.json({ message: "Forbidden - Only Admin can delete data" }, { status: 200 });
+    } else if (!supplier_ID) {
+      return Response.json({ message: "Supplier ID required" }, { status: 400 });
+    }
+
+    const supplier = await SupplierSchema.findOne({ where: { supplier_ID } });
+
+    if (!supplier) {
+      return Response.json({ message: "Supplier Not Found" }, { status: 404 });
+    }
+
+    await supplier.destroy();
+
+    return Response.json({ message: "Supplier Deleted Successfully" }, { status: 200 });
+
+  } catch (error) {
+    console.log("Error in Supplier DELETE method:", error);
     return Response.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }

@@ -131,9 +131,6 @@ const page = () => {
               </button>
               <ToastContainer />
             </form>
-            <h1 className='flex w-full justify-start mt-5 font-semibold text-sm cursor-pointer' onClick={() => router.push('/pages/Auth/ForgotPwd')}>
-              forgot your password?
-            </h1>
           </div>
         </div>
       </div>
