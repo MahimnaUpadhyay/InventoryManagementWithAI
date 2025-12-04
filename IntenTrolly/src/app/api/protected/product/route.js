@@ -44,7 +44,7 @@ export async function POST(req) {
     if (!user) {
       return Response.json({ message: "Unauthorized" }, { status: 401 });
     } else if (!authorizeRole(user, ["Admin", "Manager"])) {
-      return Response.json({ message: "Forbidden - insufficient role" }, { status: 403 });
+      return Response.json({ message: "Forbidden - insufficient role" }, { status: 200 });
     } else if (!body || Object.keys(body).length === 0) {
       return Response.json({ message: "Body is empty", body }, { status: 400 });
     } else {

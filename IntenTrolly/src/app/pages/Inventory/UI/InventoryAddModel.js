@@ -17,14 +17,15 @@ const InventoryAddModal = ({ closeModal }) => {
         Status: "",
         Supplier_ID: "",
     });
-
     const [suppliers, setSuppliers] = useState([]);
+
 
     // Fetch supplier list when modal opens
     useEffect(() => {
         const fetchSuppliers = async () => {
             try {
                 const token = localStorage.getItem("token");
+
                 const response = await axios.get(`${BASE_URL}/api/protected/supplier`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
@@ -48,6 +49,10 @@ const InventoryAddModal = ({ closeModal }) => {
         e.preventDefault();
         try {
             const token = localStorage.getItem("token");
+            const user = localStorage.getItem("user");
+            const parsedUser = JSON.parse(user);
+            const userRole = parsedUser.role;
+
             const request = await axios.post(
                 `${BASE_URL}${postProductEndPoint}`,
                 addProductData,
@@ -56,6 +61,8 @@ const InventoryAddModal = ({ closeModal }) => {
 
             if (!request) {
                 toast.error("Failed to add Product");
+            } else if(userRole=="Employee") {
+                toast.error("You are not authorized!!");
             } else {
                 toast.success("Product added successfully!");
                 setAddProductData({

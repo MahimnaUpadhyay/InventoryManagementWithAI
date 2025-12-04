@@ -28,12 +28,18 @@ const SupplierAddModal = ({ closeModal }) => {
         e.preventDefault()
         try {
             const token = localStorage.getItem("token");
+            const user = localStorage.getItem("user");
+            const parsedUser = JSON.parse(user);
+            const userRole = parsedUser.role;
+
             const request = await axios.post(`${BASE_URL}${postSupplierEndPoint}`, addSupplierData, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
             if (!request) {
                 toast.error("Failed to add supplier");
+            } else if (userRole == "Employee") {
+                toast.error("You are not authorized!!");
             } else {
                 toast.success("Supplier Added successfully");
             }
