@@ -61,7 +61,7 @@ const InventoryAddModal = ({ closeModal }) => {
 
             if (!request) {
                 toast.error("Failed to add Product");
-            } else if(userRole=="Employee") {
+            } else if (userRole == "Employee") {
                 toast.error("You are not authorized!!");
             } else {
                 toast.success("Product added successfully!");

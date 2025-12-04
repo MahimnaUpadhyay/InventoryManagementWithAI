@@ -8,12 +8,12 @@ const SalesOverview = () => {
       <Card
         Card_Title="Monthly Sales"
         Icon={<BsGraphUpArrow size={50} />}
-        Card_Content="$100k"
+        Card_Content="₹100k"
       />
       <Card
         Card_Title="Quarterly Sales"
         Icon={<BsGraphUpArrow size={50} />}
-        Card_Content="$500k"
+        Card_Content="₹500k"
       />
     </div>
   );
