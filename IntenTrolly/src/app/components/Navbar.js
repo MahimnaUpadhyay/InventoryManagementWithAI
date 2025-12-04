@@ -13,7 +13,10 @@ import { FaBoxOpen, FaUsers, FaChartLine, FaTruck } from "react-icons/fa";
 
 const Navbar = ({ children }) => {
   const router = useRouter();
-  const [UserData, setUserData] = React.useState("");
+  const [userData, setUserData] = React.useState({
+    username: "",
+    role: "",
+  });
 
   const onLogout = () => {
     localStorage.removeItem("token");
@@ -30,33 +33,29 @@ const Navbar = ({ children }) => {
 
   React.useEffect(() => {
     const storedUser = localStorage.getItem("user");
-    const parseData = JSON.parse(storedUser || "{}");
-    setUserData(parseData?.username || "");
+    const parsedData = JSON.parse(storedUser || "{}");
+
+    setUserData({
+      username: parsedData?.username || "",
+      role: parsedData?.role || "",
+    });
   }, []);
 
   const navItems = [
     { label: "Dashboard", icon: <HiOutlineHome size={20} />, onClick: onLogo },
-    {
-      label: "Inventory",
-      icon: <FaBoxOpen size={20} />,
-      onClick: onInventory,
-    },
-    {
-      label: "Suppliers",
-      icon: <FaTruck size={20} />,
-      onClick: onSuppliers,
-    },
-    {
-      label: "Sales Forecasting",
-      icon: <FaChartLine size={20} />,
-      onClick: onSales,
-    },
-    {
+    { label: "Inventory", icon: <FaBoxOpen size={20} />, onClick: onInventory },
+    { label: "Suppliers", icon: <FaTruck size={20} />, onClick: onSuppliers },
+    { label: "Sales Forecasting", icon: <FaChartLine size={20} />, onClick: onSales },
+  ];
+
+  // Add user management only if role is "admin"
+  if (userData.role === "admin") {
+    navItems.push({
       label: "User Management",
       icon: <FaUsers size={20} />,
       onClick: onUserManagement,
-    },
-  ];
+    });
+  }
 
   return (
     <div className="flex min-h-screen bg-background text-text">
@@ -99,7 +98,7 @@ const Navbar = ({ children }) => {
                 bg-white text-text rounded-lg shadow hover:bg-accent hover:text-white transition-colors duration-200"
             >
               <HiOutlineUser size={20} />
-              {UserData || "Profile"}
+              {userData.username || "Profile"}
             </button>
 
             <button
